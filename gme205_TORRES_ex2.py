@@ -25,23 +25,13 @@ for i in range(0, cornerNum, 1):
     yCoord = P[i][1]
     print "coordinate %d: (%d, %d)" % (i+1, xCoord, yCoord)
 
-#Calculate the first two and last two pair elements of the equation
-area = P[0][0]*P[1][1]+P[cornerNum-1][0]*P[0][1]-P[0][1]*P[1][0]-P[cornerNum-1][1]*P[0][0]
-
-#Iterate through intermediate pairs
-for i in range(cornerNum-1, 0, -1):
+#Calculate area
+j = cornerNum-1
+area = 0
+for i in range(cornerNum-1, -1, -1):
     
-    if i == 0:
-        break
-    else:
-        area += P[i][0]*P[j][1]
-        i = j
-    for j in range(cornerNum-1, 0, -1):
-        
-        if i == 0:
-            break
-        else:
-            area -= P[i][1]*P[i][0]
-            j = k
+    area += (P[i][0]*P[j][1]-P[i][1]*P[j][0])
+    j = i
+             
 #Calculate and print the area 
 print "\nThe area of the polygon is: %0.1f units" %(abs(area/float(2)))
